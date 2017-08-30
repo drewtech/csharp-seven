@@ -1,6 +1,6 @@
-# New features in C# 7 (forked from https://github.com/pardahlman Thanks!)
+# New features in C# 7
 
-Originally a .Net Core suite with Xunit, this has been converted to windows .NET with Nunit runner.
+Originally a .Net Core suite with Xunit forked from https://github.com/pardahlman, this has been converted to windows .NET with Nunit runner.
 
 > Test suite of new features in C# 7
 
