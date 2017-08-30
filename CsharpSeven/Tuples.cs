@@ -1,11 +1,12 @@
 ﻿using System;
-using Xunit;
+using NUnit.Framework;
 
 namespace CsharpSeven
 {
+    [TestFixture]
 	public class Tuples
 	{
-		[Fact]
+		[Test]
 		public void Works_For_Simple_Tuple()
 		{
 			(int Added, int Multiplied) Calculate(int first, int second)
@@ -21,11 +22,11 @@ namespace CsharpSeven
 			var result = Calculate(four, five);
 
 			/* Assert */
-			Assert.Equal(result.Added, 9);
-			Assert.Equal(result.Multiplied, 20);
+			Assert.That(result.Added, Is.EqualTo(9));
+			Assert.That(result.Multiplied, Is.EqualTo(20));
 		}
 
-		[Fact]
+		[Test]
 		public void Works_As_Class_Member()
 		{
 			/* Setup */
@@ -39,11 +40,11 @@ namespace CsharpSeven
 			var fullName = person.FullName;
 
 			/* Assert */
-			Assert.Equal(fullName.First, person.FirstName);
-			Assert.Equal(fullName.Last, person.LastName);
-		}
+			Assert.That(fullName.First, Is.EqualTo(person.FirstName));
+			Assert.That(fullName.Last, Is.EqualTo(person.LastName));
+        }
 
-		[Fact]
+		[Test]
 		public void Should_Survive_Type_Casting()
 		{
 			/* Setup */
@@ -59,11 +60,11 @@ namespace CsharpSeven
 			var backAgain = (ValueTuple<string, string>)tuppleAsObj;
 
 			/* Assert */
-			Assert.Equal(backAgain.Item1, person.FirstName);
-			Assert.Equal(backAgain.Item2, person.LastName);
+			Assert.That(backAgain.Item1, Is.EqualTo(person.FirstName));
+			Assert.That(backAgain.Item2, Is.EqualTo(person.LastName));
 		}
 
-		[Fact]
+		[Test]
 		public void Works_With_Generic_Arguments()
 		{
 			(T1 FirstArgument, T2 SecondArgument) Create<T1, T2>(T1 t1, T2 t2)
@@ -75,14 +76,14 @@ namespace CsharpSeven
 			const int one = 1;
 			const string hello = "hello";
 			/* Test */
-			var tupple = Create(one, hello);
+			var tuple = Create(one, hello);
 
 			/* Assert */
-			Assert.Equal(tupple.FirstArgument, one);
-			Assert.Equal(tupple.SecondArgument, hello);
+			Assert.That(tuple.FirstArgument, Is.EqualTo(one));
+			Assert.That(tuple.SecondArgument, Is.EqualTo(hello));
 		}
 
-		[Fact]
+		[Test]
 		public void Can_Be_Deconstructed()
 		{
 			(int Added, int Multiplied) Calculate(int first, int second)
@@ -98,12 +99,12 @@ namespace CsharpSeven
 			(var added, var multipled) = Calculate(four, five);
 
 			/* Assert */
-			Assert.Equal(added, 9);
-			Assert.Equal(multipled, 20);
+			Assert.That(added, Is.EqualTo(9));
+			Assert.That(multipled, Is.EqualTo(20));
 		}
 
 
-		[Fact]
+		[Test]
 		public void Can_Deconstruct_Objects()
 		{
 			/* Setup */
@@ -117,11 +118,11 @@ namespace CsharpSeven
 			(var first, var last) = person;
 
 			/* Assert */
-			Assert.Equal(first, person.FirstName);
-			Assert.Equal(last, person.LastName);
+			Assert.That(first, Is.EqualTo(person.FirstName));
+			Assert.That(last, Is.EqualTo(person.LastName));
 		}
 
-		[Fact]
+		[Test]
 		public void Can_Deconstruct_Objects_With_Discard_Operator()
 		{
 			/* Setup */
@@ -135,10 +136,10 @@ namespace CsharpSeven
 			(var first, _) = person;
 
 			/* Assert */
-			Assert.Equal(first, person.FirstName);
+			Assert.That(first, Is.EqualTo(person.FirstName));
 		}
 
-		[Fact]
+		[Test]
 		public void Can_Deconstruct_From_Extension_Method()
 		{
 			/* Setup */
@@ -148,9 +149,9 @@ namespace CsharpSeven
 			(var year, var month, var day) = xmas;
 
 			/* Assert */
-			Assert.Equal(xmas.Year, year);
-			Assert.Equal(xmas.Month, month);
-			Assert.Equal(xmas.Day, day);
+			Assert.That(xmas.Year, Is.EqualTo(year));
+			Assert.That(xmas.Month, Is.EqualTo(month));
+			Assert.That(xmas.Day, Is.EqualTo(day));
 		}
 	}
 

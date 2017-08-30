@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+﻿using NUnit.Framework;
 
 namespace CsharpSeven
 {
+    [TestFixture]
 	public class PatternMatching
 	{
-		[Fact]
+		[Test]
 		public void Works_In_Switch_Cases()
 		{
 			Geometry geometry = new Square { Width = 5 };
@@ -18,7 +16,7 @@ namespace CsharpSeven
 					Assert.True(false, $"Create square, got rectangle {r.Height} x {r.Width}.");
 					break;
 				case Square s:
-					Assert.Equal(s.Width, 5);
+					Assert.That(s.Width, Is.EqualTo(5));
 					break;
 				default:
 					Assert.True(false);
@@ -26,7 +24,7 @@ namespace CsharpSeven
 			}
 		}
 
-		[Fact]
+		[Test]
 		public void Works_In_Conditional_Switch_Cases()
 		{
 			Geometry geometry = new Rectangle
@@ -46,7 +44,7 @@ namespace CsharpSeven
 			}
 		}
 
-		[Fact]
+		[Test]
 		public void Works_In_Var_Is_Type()
 		{
 			Geometry rectangle = new Rectangle {Height = 1, Width = 2};
@@ -57,8 +55,8 @@ namespace CsharpSeven
 
 			if (rectangle is Rectangle r)
 			{
-				Assert.Equal(r.Width, 2);
-				Assert.Equal(r.Height, 1);
+				Assert.That(r.Width, Is.EqualTo(2));
+				Assert.That(r.Height, Is.EqualTo(1));
 			}
 		}
 	}

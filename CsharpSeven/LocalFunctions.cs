@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xunit;
+using NUnit.Framework;
 
 namespace CsharpSeven
 {
-	public class LocalFunctionsTests
+    [TestFixture]
+    public class LocalFunctionsTests
 	{
-		[Fact]
+		[Test]
 		public void Works_For_String()
 		{
 			/* Setup */
@@ -17,10 +18,10 @@ namespace CsharpSeven
 			var greeting = LocalFunctions.Greet(name);
 
 			/* Assert */
-			Assert.Equal(greeting, "Hello, World!");
+			Assert.That(greeting, Is.EqualTo("Hello, World!"));
 		}
 
-		[Fact]
+		[Test]
 		public async Task Work_With_Async_Await()
 		{
 			/* Setup */
@@ -30,10 +31,10 @@ namespace CsharpSeven
 			var greeting = await LocalFunctions.GreetAsync(name);
 
 			/* Assert */
-			Assert.Equal(greeting, "Hello, World!");
+			Assert.That(greeting, Is.EqualTo("Hello, World!"));
 		}
 
-		[Fact]
+		[Test]
 		public void Work_With_Yielded_Enumerable()
 		{
 			/* Setup */
@@ -43,10 +44,10 @@ namespace CsharpSeven
 			var greeting = LocalFunctions.YieldGreet(name);
 
 			/* Assert */
-			Assert.Equal(greeting, "Hello, World!");
+			Assert.That(greeting, Is.EqualTo("Hello, World!"));
 		}
 
-		[Fact]
+		[Test]
 		public void Works_With_Nested_Methods()
 		{
 			/* Setup */
@@ -56,10 +57,10 @@ namespace CsharpSeven
 			var greeting = LocalFunctions.GreetNested(name);
 
 			/* Assert */
-			Assert.Equal(greeting, "Hello, World!");
+			Assert.That(greeting, Is.EqualTo("Hello, World!"));
 		}
 
-		[Fact]
+		[Test]
 		public void Works_With_Complex_Nested_Method()
 		{
 			/* Setup */
@@ -69,7 +70,7 @@ namespace CsharpSeven
 			var greeting = LocalFunctions.GreetComplexNested(name);
 
 			/* Assert */
-			Assert.Equal(greeting, "Hello, World!");
+			Assert.That(greeting, Is.EqualTo("Hello, World!"));
 		}
 	}
 

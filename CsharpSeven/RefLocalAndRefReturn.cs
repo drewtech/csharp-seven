@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using Microsoft.VisualBasic.CompilerServices;
-using Xunit;
+using NUnit.Framework;
+
 
 namespace CsharpSeven
 {
+    [TestFixture]
 	public class RefLocalAndRefReturn
 	{
-		[Fact]
+		[Test]
 		public void Works_For_Value_Type_By_Ref()
 		{
 			/* Setup */
@@ -29,13 +28,13 @@ namespace CsharpSeven
 			ref var largestNumber = ref GetLargets(ref eleven, ref thirty);
 
 			/* Assert */
-			Assert.Equal(largestNumber, thirty);
+			Assert.That(largestNumber, Is.EqualTo(thirty));
 
 			largestNumber++;
-			Assert.Equal(largestNumber, thirty);
+			Assert.That(largestNumber, Is.EqualTo(thirty));
 		}
 
-		[Fact]
+		[Test]
 		public void Works_For_Class_Members()
 		{
 			ref int Highest(Numbers numbers)
@@ -59,15 +58,15 @@ namespace CsharpSeven
 			var byValue = Highest(twoByFour);
 
 			/* Assert */
-			Assert.Equal(byRef, twoByFour.Second);
-			Assert.Equal(byValue, twoByFour.Second);
+			Assert.That(byRef, Is.EqualTo(twoByFour.Second));
+			Assert.That(byValue, Is.EqualTo(twoByFour.Second));
 
 			byRef++;
-			Assert.Equal(byRef, twoByFour.Second);
-			Assert.NotEqual(byValue, twoByFour.Second);
+			Assert.That(byRef, Is.EqualTo(twoByFour.Second));
+			Assert.That(byValue, Is.Not.EqualTo(twoByFour.Second));
 		}
 
-		[Fact]
+		[Test]
 		public void Works_For_List_Members_With_Extension_Method()
 		{
 			/* Setup */
@@ -77,11 +76,11 @@ namespace CsharpSeven
 			ref var highest = ref numbers.GetHighestValue();
 
 			/* Assert */
-			Assert.Equal(highest, 7);
+			Assert.That(highest, Is.EqualTo(7));
 
 			highest++;
 			var highestFromArray = numbers.Max();
-			Assert.Equal(highestFromArray, 8);
+			Assert.That(highestFromArray, Is.EqualTo(8));
 		}
 	}
 

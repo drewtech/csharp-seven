@@ -1,11 +1,12 @@
 ﻿using System;
-using Xunit;
+using NUnit.Framework;
 
 namespace CsharpSeven
 {
+    [TestFixture]
 	public class ThrowExceptions
 	{
-		[Fact]
+		[Test]
 		public void Works_With_Null_Coalescing_Operator()
 		{
 			Assert.Throws<Exception>(() =>
@@ -15,7 +16,7 @@ namespace CsharpSeven
 			});
 		}
 
-		[Fact]
+		[Test]
 		public void Works_With_Conditional_Operator()
 		{
 			Assert.Throws<Exception>(() =>
@@ -27,7 +28,7 @@ namespace CsharpSeven
 			});
 		}
 
-		[Fact]
+		[Test]
 		public void Works_With_Expression_Bodies()
 		{
 			void ThrowIt() => throw new Exception();

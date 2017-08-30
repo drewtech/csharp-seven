@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Xunit;
+using NUnit.Framework;
+
 
 namespace CsharpSeven
 {
-	public class OutVarDeclarationTests
+    [TestFixture]
+    public class OutVarDeclarationTests
 	{
-		[Fact]
+		[Test]
 		public void Works_With_Try_Parse()
 		{
 			/* Setup */
@@ -16,7 +18,7 @@ namespace CsharpSeven
 			/* Test & Assert */
 			if (Guid.TryParse(guidAsString, out var parsed))
 			{
-				Assert.NotEqual(parsed, Guid.Empty);
+				Assert.That(parsed, Is.Not.EqualTo(Guid.Empty));
 			}
 			else
 			{
@@ -24,7 +26,7 @@ namespace CsharpSeven
 			}
 		}
 
-		[Fact]
+		[Test]
 		public void Works_With_Discard_Operator()
 		{
 			/* Setup */
